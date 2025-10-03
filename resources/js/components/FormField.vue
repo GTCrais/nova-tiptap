@@ -61,6 +61,15 @@
                                 </image-button>
                             </template>
 
+							<template v-else-if="button == 'video'">
+								<span class="whitespace-nowrap">
+									<youtube-button
+										:editor="editor"
+										:mode="mode"
+									></youtube-button>
+								</span>
+							</template>
+
                             <template v-else-if="button == 'placeholderBlock'">
                                 <placeholder-block-button
                                     :editor="editor"
@@ -221,6 +230,7 @@
     import Image from "@tiptap/extension-image";
     import Dropcursor from "@tiptap/extension-dropcursor";
     import ImageResize from "tiptap-extension-resize-image";
+	import Youtube from '@tiptap/extension-youtube'
 
     import LinkButton from "./buttons/LinkButton";
     import NormalButton from "./buttons/NormalButton";
@@ -235,6 +245,7 @@
     import BaseButton from "./buttons/BaseButton.vue";
     import ColorButton from "./buttons/ColorButton.vue";
     import TableButton from "./buttons/TableButton.vue";
+	import YoutubeButton from "./buttons/YoutubeButton.vue";
 
     import CodeBlockComponent from "./CodeBlockComponent";
     import EditHtml from "./EditHtml";
@@ -265,6 +276,7 @@
         props: ["resourceName", "resourceId", "field"],
 
         components: {
+			YoutubeButton,
             TableButton,
             ColorButton,
             EditorContent,
@@ -602,6 +614,14 @@
                 }),
                 Dropcursor,
                 ImageResize,
+				Youtube.configure({
+					inline: false,
+					width: 640,
+					// height: 360,
+					nocookie: true,         // optional; uses youtube-nocookie.com
+					allowFullscreen: true,  // optional
+					// HTMLAttributes: { class: 'rounded-lg shadow' }, // optional
+				}),
             ];
 
             if (

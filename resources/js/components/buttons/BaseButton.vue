@@ -7,10 +7,10 @@
             leading-none text-xs
             rounded shadow
             tiptap-button
-            
+
         "
         style="margin: 4px; min-width: 32px; height: 32px"
-        :class="{ 
+        :class="{
             'bg-primary-500 hover:bg-primary-400 text-white hover:dark:bg-gray-900 dark:bg-gray-800 dark:text-white': isActive,
             'bg-white hover:bg-gray-200 text-black hover:dark:bg-gray-900 dark:bg-gray-800 dark:text-white': !isActive,
             'opacity-50 pointer-events-none': isDisabled,
@@ -19,7 +19,7 @@
         @mouseout="hovered = false"
         @click="callClickMethod"
     >
-        <div 
+        <div
             class="
                 pointer-events-none
                 absolute left-0 w-full flex justify-center
@@ -27,10 +27,10 @@
             style="z-index: 100; bottom: 36px;"
             v-show="hovered"
         >
-            <div 
+            <div
                 v-html="title"
                 class="
-                    whitespace-nowrap bg-black 
+                    whitespace-nowrap bg-black
                     text-2xs text-white font-semibold capitalize
                     px-1 py-px rounded
                 "
@@ -57,18 +57,9 @@
 <script>
 
 import { library } from '@fortawesome/fontawesome-svg-core';
+import { faPlay } from "@fortawesome/free-solid-svg-icons";
 
 import {
-    faHorizontalRule,
-    faParagraphRtl,
-    faImagePolaroid
-} from '@fortawesome/pro-solid-svg-icons';
-
-import {
-    faCube
-} from '@fortawesome/pro-regular-svg-icons';
-
-import { 
     faAlignCenter,
     faAlignJustify,
     faAlignLeft,
@@ -80,7 +71,7 @@ import {
     faHighlighter,
     faImage,
     faItalic,
-    faLink, 
+    faLink,
     faListOl,
     faListUl,
     faParagraph,
@@ -96,7 +87,7 @@ import {
     faA,
     faSwatchbook,
     faDropletSlash,
-    faPenFancy
+    faPenFancy,
 } from '@fortawesome/free-solid-svg-icons';
 
 library.add(
@@ -106,19 +97,16 @@ library.add(
     faAlignRight,
     faBold,
     faCode,
-    faCube,
     faCubes,
     faFileCode,
     faHighlighter,
-    faHorizontalRule,
     faImage,
-    faImagePolaroid,
     faItalic,
-    faLink, 
+    faLink,
     faListOl,
     faListUl,
     faParagraph,
-    faParagraphRtl,
+	faPlay,
     faQuoteRight,
     faRedoAlt,
     faStrikethrough,
@@ -143,7 +131,7 @@ export default {
         }
     },
     props: [
-        'clickMethod', 
+        'clickMethod',
         'clickMethodParameters',
         'title',
         'isActive',
@@ -160,7 +148,7 @@ export default {
         callClickMethod() {
             let tmpParams = this.clickMethodParameters
             if (tmpParams) {
-                
+
                 if (!typeof(tmpParams) != 'object') {
                     tmpParams = [tmpParams];
                 }
